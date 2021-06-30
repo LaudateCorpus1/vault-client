@@ -3,7 +3,7 @@ name: main
 on:
   push:
     branches: [ main ]
-    tags: [ 1.* ]
+    tags: [ * ]
 
 env:
   REGISTRY: gcr.io

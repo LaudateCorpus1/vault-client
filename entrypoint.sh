@@ -1,5 +1,7 @@
-#!/bin/sh -l
+#!/bin/bash
 
-echo "Hello $1"
-time=$(date)
-echo "::set-output name=time::$time"
+source bishy.bash
+
+get_longOpt $@
+
+echo "::set-output name=vault_addr::$vault_addr"

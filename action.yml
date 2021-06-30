@@ -1,16 +1,42 @@
 # action.yml
-name: 'Hello World'
-description: 'Greet someone and record the time'
+name: 'Vault Client'
+description: 'Actions wrapper for the HashiCorp Vault CLI'
 inputs:
-  who-to-greet:  # id of input
-    description: 'Who to greet'
+  vault_addr:
+    description: 'Vault URL'
     required: true
-    default: 'World'
+    default: 'https://localhost:8200'
+  auth_method:
+    required: true
+    description: 'Method to authenticate with'
+    default: 'token'
+  role:
+    required: false
+    description: 'Role to authenticate'
+  username:
+    required: false
+    description: 'LDAP username'
+  password:
+    required: false
+    description: 'LDAP password'
 outputs:
-  time: # id of output
-    description: 'The time we greeted you'
+  vault_addr:
+    description: 'Vault URL'
+  auth_method:
+    description: 'Method to authenticate with'
+  role:
+    description: 'Role to authenticate'
+  username:
+    description: 'LDAP username'
+  password:
+    description: 'LDAP passsword'
+
 runs:
   using: 'docker'
   image: 'Dockerfile'
   args:
-    - ${{ inputs.who-to-greet }}
+    - --vault_addr ${{ inputs.vault_addr }}
+    - --auth_method ${{ inputs.auth_method }}
+    - --role ${{ inputs.role }}
+    - --username ${{ inputs.username }}
+    - --password ${{ inputs.password }}

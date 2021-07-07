@@ -12,13 +12,13 @@ while getopts ":a:m:t:r:u:p:s:" opt; do
         VAULT_TOKEN=`echo ${OPTARG} | xargs`
       ;;
     r ) 
-        VAULT_ROLE=${OPTARG}
+        VAULT_ROLE=`echo ${OPTARG} | xargs`
       ;;
     u ) 
-        VAULT_USERNAME=${OPTARG}
+        VAULT_USERNAME=`echo ${OPTARG} | xargs`
       ;;
     p ) 
-        VAULT_PASSWORD=${OPTARG}
+        VAULT_PASSWORD=`echo ${OPTARG} | xargs`
       ;;
     s ) 
         VAULT_SECRETS=${OPTARG}

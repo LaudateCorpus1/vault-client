@@ -29,6 +29,7 @@ done
 shift $((OPTIND-1))
 
 echo $VAULT_ADDR
+echo $VAULT_METHOD
 
 if [ "$VAULT_METHOD" == "token" ]
 then

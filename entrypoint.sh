@@ -31,7 +31,7 @@ shift $((OPTIND-1))
 if [ "$VAULT_METHOD" == "token" ]
 then
     echo "Using token method for Vault"
-    vault login -no-print -method=token token=$VAULT_TOKEN
+    vault login -address=$VAULT_ADDR -no-print -method=token token=$VAULT_TOKEN
 fi
 
 IFS=';' 
@@ -42,7 +42,7 @@ do
     SECRET_PATH=`echo ${SECRET[0]} | awk '{print $1}'`
     SECRET_FIELD=`echo ${SECRET[0]} | awk '{print $2}'`
     SECRET_NAME=`echo ${SECRET[1]} | xargs`
-    SECRET_VALUE=`vault read -field=$SECRET_FIELD $SECRET_PATH`
+    SECRET_VALUE=`vault read -address=$VAULT_ADDR -field=$SECRET_FIELD $SECRET_PATH`
     # cleanup secret value for github
     SECRET_VALUE="${SECRET_VALUE//'%'/'%25'}"
     SECRET_VALUE="${SECRET_VALUE//$'\n'/'%0A'}"

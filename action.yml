@@ -2,7 +2,7 @@
 name: 'Vault Client'
 description: 'Actions wrapper for the HashiCorp Vault CLI'
 inputs:
-  vault_addr:
+  addr:
     description: 'Vault URL'
     required: true
     default: 'https://localhost:8200'
@@ -10,6 +10,9 @@ inputs:
     required: true
     description: 'Method to authenticate with'
     default: 'token'
+  secrets:
+    required: true
+    description: 'List of secrets'
   role:
     required: false
     description: 'Role to authenticate'
@@ -19,6 +22,9 @@ inputs:
   password:
     required: false
     description: 'LDAP password'
+  token:
+    required: false
+    description: 'Token for authentication'
 outputs:
   vault_addr_out:
     description: 'Vault URL'
@@ -35,8 +41,10 @@ runs:
   using: 'docker'
   image: 'Dockerfile'
   args:
-    - --vault_addr ${{ inputs.vault_addr }}
+    - --addr ${{ inputs.addr }}
     - --auth_method ${{ inputs.auth_method }}
+    - --token ${{ inputs.token }}
     - --role ${{ inputs.role }}
     - --username ${{ inputs.username }}
     - --password ${{ inputs.password }}
+    - --secrets ${{ inputs.secrets }}

@@ -1,1 +1,1 @@
-FROM gcr.io/viant-images/actions/vault-client:26b1c62
+FROM gcr.io/viant-images/actions/vault-client:0.12

@@ -4,5 +4,5 @@ source /bishy.bash
 
 get_longOpt $@
 
-echo "::set-output name=vault_addr_out::$vault_addr"
-echo "Hello from vault-client"
+echo "::set-output name=vault_addr_out::$addr"
+echo $addr

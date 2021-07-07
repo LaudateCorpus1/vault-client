@@ -28,8 +28,8 @@ done
 
 shift $((OPTIND-1))
 
-echo $VAULT_ADDR
-echo $VAULT_METHOD
+VAULT_ADDR=`echo $VAULT_ADDR | xargs`
+VAULT_METHOD=`echo $VAULT_METHOD | xargs`
 
 if [ "$VAULT_METHOD" == "token" ]
 then

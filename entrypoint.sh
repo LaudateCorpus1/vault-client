@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source bishy.bash
+source /bishy.bash
 
 get_longOpt $@
 

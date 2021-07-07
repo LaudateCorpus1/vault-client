@@ -9,7 +9,7 @@ while getopts ":a:m:t:r:u:p:s:" opt; do
         VAULT_METHOD=`echo ${OPTARG} | xargs`
       ;;
     t ) 
-        VAULT_TOKEN=${OPTARG}
+        VAULT_TOKEN=`echo ${OPTARG} | xargs`
       ;;
     r ) 
         VAULT_ROLE=${OPTARG}

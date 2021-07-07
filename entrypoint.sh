@@ -3,10 +3,10 @@
 while getopts ":a:m:t:r:u:p:s:" opt; do
   case ${opt} in
     a ) 
-        VAULT_ADDR=${OPTARG}
+        VAULT_ADDR=`echo ${OPTARG} | xargs`
       ;;
     m ) 
-        VAULT_METHOD=${OPTARG}
+        VAULT_METHOD=`echo ${OPTARG} | xargs`
       ;;
     t ) 
         VAULT_TOKEN=${OPTARG}
@@ -27,9 +27,6 @@ while getopts ":a:m:t:r:u:p:s:" opt; do
 done
 
 shift $((OPTIND-1))
-
-VAULT_ADDR=`echo $VAULT_ADDR | xargs`
-VAULT_METHOD=`echo $VAULT_METHOD | xargs`
 
 if [ "$VAULT_METHOD" == "token" ]
 then

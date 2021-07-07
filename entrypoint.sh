@@ -28,7 +28,24 @@ done
 
 shift $((OPTIND-1))
 
-echo "::set-output name=vault_addr_out::$VAULT_ADDR"
-echo "version 0.18"
-echo "---------"
-echo $VAULT_SECRETS
+if [ "$VAULT_METHOD" == "token" ]
+then
+    echo "Using token method for Vault"
+    vault login -no-print -method=token token=$VAULT_TOKEN
+fi
+
+IFS=';' 
+read -ra SECRETS <<< "$VAULT_SECRETS"
+for i in "${SECRETS[@]}"
+do
+    IFS='|' read -ra SECRET <<< "$i"
+    SECRET_PATH=`echo ${SECRET[0]} | awk '{print $1}'`
+    SECRET_FIELD=`echo ${SECRET[0]} | awk '{print $2}'`
+    SECRET_NAME=`echo ${SECRET[1]} | xargs`
+    SECRET_VALUE=`vault read -field=$SECRET_FIELD $SECRET_PATH`
+    # cleanup secret value for github
+    SECRET_VALUE="${SECRET_VALUE//'%'/'%25'}"
+    SECRET_VALUE="${SECRET_VALUE//$'\n'/'%0A'}"
+    SECRET_VALUE="${SECRET_VALUE//$'\r'/'%0D'}"
+    echo "::set-output name=$SECRET_NAME::$SECRET_VALUE"
+done

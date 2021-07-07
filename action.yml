@@ -25,18 +25,6 @@ inputs:
   token:
     required: false
     description: 'Token for authentication'
-outputs:
-  vault_addr_out:
-    description: 'Vault URL'
-  auth_method_out:
-    description: 'Method to authenticate with'
-  role_out:
-    description: 'Role to authenticate'
-  username_out:
-    description: 'LDAP username'
-  password_out:
-    description: 'LDAP passsword'
-
 runs:
   using: 'docker'
   image: 'Dockerfile'

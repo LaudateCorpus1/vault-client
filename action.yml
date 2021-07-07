@@ -41,10 +41,10 @@ runs:
   using: 'docker'
   image: 'Dockerfile'
   args:
-    - --addr ${{ inputs.addr }}
-    - --auth_method ${{ inputs.auth_method }}
-    - --token ${{ inputs.token }}
-    - --role ${{ inputs.role }}
-    - --username ${{ inputs.username }}
-    - --password ${{ inputs.password }}
+    #    - --addr ${{ inputs.addr }}
+    #    - --auth_method ${{ inputs.auth_method }}
+    #    - --token ${{ inputs.token }}
+    #    - --role ${{ inputs.role }}
+    #    - --username ${{ inputs.username }}
+    #    - --password ${{ inputs.password }}
     - --secrets ${{ inputs.secrets }}

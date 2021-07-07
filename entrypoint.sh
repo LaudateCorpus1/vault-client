@@ -28,6 +28,8 @@ done
 
 shift $((OPTIND-1))
 
+echo $VAULT_ADDR
+
 if [ "$VAULT_METHOD" == "token" ]
 then
     echo "Using token method for Vault"

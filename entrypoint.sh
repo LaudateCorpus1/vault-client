@@ -34,6 +34,12 @@ then
     vault login -address=$VAULT_ADDR -no-print -method=token token=$VAULT_TOKEN
 fi
 
+if [ "$VAULT_METHOD" == "aws" ]
+then
+    echo "Using AWS method for Vault"
+    vault login -address=$VAULT_ADDR -no-print -method=aws role=$VAULT_ROLE
+fi
+
 IFS=';' 
 read -ra SECRETS <<< "$VAULT_SECRETS"
 for i in "${SECRETS[@]}"

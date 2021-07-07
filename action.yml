@@ -20,15 +20,15 @@ inputs:
     required: false
     description: 'LDAP password'
 outputs:
-  vault_addr:
+  vault_addr_out:
     description: 'Vault URL'
-  auth_method:
+  auth_method_out:
     description: 'Method to authenticate with'
-  role:
+  role_out:
     description: 'Role to authenticate'
-  username:
+  username_out:
     description: 'LDAP username'
-  password:
+  password_out:
     description: 'LDAP passsword'
 
 runs:

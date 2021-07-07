@@ -4,4 +4,4 @@ source bishy.bash
 
 get_longOpt $@
 
-echo "::set-output name=vault_addr::$vault_addr"
+echo "::set-output name=vault_addr_out::$vault_addr"
